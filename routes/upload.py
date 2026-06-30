@@ -142,5 +142,9 @@ def _guess_mimetype(filename):
             ".wordprocessingml.document"
         ),
         "txt": "text/plain",
+        "xls": "application/vnd.ms-excel",
+        "xlsx": (
+            "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+        ),
     }
     return mime_map.get(extension, "application/octet-stream")

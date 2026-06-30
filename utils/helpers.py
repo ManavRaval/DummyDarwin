@@ -10,12 +10,25 @@ from werkzeug.utils import secure_filename
 from config import Config
 
 
-def allowed_file(filename):
-    """Return True if the file extension is in the allowed set."""
+def get_allowed_extensions(category):
+    """Return the allowed extensions for a given document category."""
+    if category == Config.CATEGORY_CANDIDATE:
+        return Config.ALLOWED_EXTENSIONS_CANDIDATE
+    return Config.ALLOWED_EXTENSIONS
+
+
+def format_allowed_extensions(category):
+    """Return a human-readable list of allowed formats for error messages."""
+    extensions = sorted(get_allowed_extensions(category))
+    return ", ".join(ext.upper() for ext in extensions)
+
+
+def allowed_file(filename, category):
+    """Return True if the file extension is allowed for the given category."""
     if not filename or "." not in filename:
         return False
     extension = filename.rsplit(".", 1)[1].lower()
-    return extension in Config.ALLOWED_EXTENSIONS
+    return extension in get_allowed_extensions(category)
 
 
 def generate_unique_filename(original_filename):
@@ -52,9 +65,9 @@ def save_uploaded_file(file_storage, category):
 
     original_filename = file_storage.filename
 
-    if not allowed_file(original_filename):
+    if not allowed_file(original_filename, category):
         raise ValueError(
-            "Invalid file type. Allowed formats: PDF, DOC, DOCX, TXT."
+            f"Invalid file type. Allowed formats: {format_allowed_extensions(category)}."
         )
 
     stored_filename, original_filename = generate_unique_filename(original_filename)

@@ -27,6 +27,7 @@ class Config:
 
     # Allowed file extensions (lowercase)
     ALLOWED_EXTENSIONS = {"pdf", "doc", "docx", "txt"}
+    ALLOWED_EXTENSIONS_CANDIDATE = ALLOWED_EXTENSIONS | {"xls", "xlsx"}
 
     # Category constants for document library
     CATEGORY_JD = "jd"

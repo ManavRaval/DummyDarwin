@@ -144,7 +144,7 @@
         <div class="upload-section">
             <form action="{{ url_for('upload.upload_candidate') }}" method="POST" enctype="multipart/form-data" class="upload-form">
                 <label class="upload-area" for="candidate-file">
-                    <input type="file" id="candidate-file" name="file" accept=".pdf,.doc,.docx,.txt" hidden>
+                    <input type="file" id="candidate-file" name="file" accept=".pdf,.doc,.docx,.txt,.xls,.xlsx" hidden>
                     <span class="upload-icon">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
@@ -157,7 +157,7 @@
                         Upload
                     </button>
                 </label>
-                <p class="format-hint">Accepted formats: <span>PDF</span> <span>DOCX</span> <span>DOC</span> <span>TXT</span></p>
+                <p class="format-hint">Accepted formats: <span>PDF</span> <span>DOCX</span> <span>DOC</span> <span>TXT</span> <span>XLS</span> <span>XLSX</span></p>
             </form>
         </div>
 
